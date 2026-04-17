@@ -51,6 +51,7 @@ jobs:
       - name: copier le fichier env
         run: |
           cp .env.docker .env
+          echo "DATABASE_HOST=localhost" >> .env
       - name: lancer la bdd
         run: |
           mysql -h 127.0.0.1 -P 3306 -u root -prootpw < db.sql
