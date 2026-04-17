@@ -43,13 +43,13 @@ jobs:
       - name: installer les dépendances
         run: | 
           composer install
-      - name: démarrer le serveur PHP
-        run: |
-          php -S 127.0.0.1:8000 -t public &
          # Install dependencies with caching
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        with:
+          wait-on: 'http://127.0.0.1:8000'
+          wait-on-timeout: 120
     
 
 # job : build (environnemt du projet)
