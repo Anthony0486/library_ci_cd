@@ -49,7 +49,7 @@ jobs:
          # Install dependencies with caching
       # and run all Cypress tests
       - name: Cypress run
-        uses: cypress-io/github-action@v7
+        uses: cypress-io/github-action@v6
     
 
 # job : build (environnemt du projet)
