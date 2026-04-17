@@ -1,6 +1,6 @@
 describe('Test du formulaire avec fixture', () => {
   beforeEach(() => {
-    cy.visit('https://library.mithridatem.fr/');
+    cy.visit('http://127.0.0.1:8000/');
     cy.fixture('users').as('userData');
     cy.fixture('books').as('bookData');
   });
