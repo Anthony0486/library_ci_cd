@@ -22,6 +22,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: taskdb
+          MYSQL_USER: testuser
+          MYSQL_PASSWORD: testpw
         ports:
           - 3306:3306
         options: >-
@@ -53,7 +55,7 @@ jobs:
           cp .env.docker .env
       - name: lancer la bdd
         run: |
-          mysql -h 127.0.0.1 -uroot -prootpw taskdb < db.sql
+          mysql -h 127.0.0.1 -utestuser -ptestpw taskdb < db.sql
       - name: Cypress run
         uses: cypress-io/github-action@v6
     
