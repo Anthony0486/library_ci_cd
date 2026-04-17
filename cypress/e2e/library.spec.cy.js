@@ -1,6 +1,6 @@
 describe('Test du formulaire avec fixture', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:8080/register/');
+    cy.visit('http://127.0.0.1:8000/');
     cy.fixture('users').as('userData');
   });
       it('Remplir le formulaire avec des utilisateur valide depuis la fixture', function () {
@@ -8,6 +8,7 @@ describe('Test du formulaire avec fixture', () => {
         
        cy.wrap(users).each((entry) => {
         const user = entry.standardUser;
+             cy.get('a[href="/register"]').click();
              cy.get('#firstname').type(user.firstName);
              cy.get('#lastname').type(user.lastName);
              cy.get('#email').type(user.email);
