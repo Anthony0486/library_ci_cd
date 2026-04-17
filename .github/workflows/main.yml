@@ -20,7 +20,7 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: taskdb
         ports:
           - 3306:3306
@@ -43,13 +43,19 @@ jobs:
       - name: installer les dépendances
         run: | 
           composer install
+      - name: démarrer le serveur PHP
+        run: |
+          php -S 127.0.0.1:8000 -t public &
          # Install dependencies with caching
       # and run all Cypress tests
+      - name: copier le fichier env
+        run: |
+          cp .env.docker .env
+      - name: lancer la bdd
+        run: |
+            mysql -h 127.0.0.1 -uroot -prootpw taskdb < /db.sql
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        with:
-          wait-on: 'http://127.0.0.1:8000'
-          wait-on-timeout: 120
     
 
 # job : build (environnemt du projet)
